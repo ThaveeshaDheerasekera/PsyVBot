@@ -1,3 +1,5 @@
 datasets/
 nltk_data/
 models/final_models/
+
+.env
