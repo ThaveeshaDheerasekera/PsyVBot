@@ -1,0 +1,16 @@
+  419  conda env list
+  420  conda install -y jupyter
+  421  conda deactivate
+  422  source .start_miniconda3.sh
+  423  conda deactivate
+  424  clear
+  425  conda env create -f ~/Downloads/tensorflow-apple-metal.yml -n tensorflow
+  426  conda activate tensorflow
+  427  python -m ipykernel install --user --name tensorflow --display-name "Python 3.10 (tensorflow)"
+  428  conda env list
+  429  jupyter notebook
+  430  conda deactivate
+  431  clear
+  432  conda activate tensorflow
+  433  conda env list
+  434  history
