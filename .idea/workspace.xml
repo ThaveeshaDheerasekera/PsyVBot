@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3aed5f9e-09b8-4b83-bf1e-68956c1f5e1d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/models/lsa_random_forest_regression_model.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/lsa_transformed_logistic_regression_model.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/models/lsa_logistic_regression_model.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/lsa_transformed_lstm_model.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/models/lsa_lstm_model.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/lsa_transformed_svm_model.ipynb" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jupyter Notebook" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2O94ad1svqTjnQyxKwrvTvxtWvt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;data-science&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/thaveesha/Projects/PsyVBot&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3aed5f9e-09b8-4b83-bf1e-68956c1f5e1d" name="Changes" comment="" />
+      <created>1680959529516</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680959529516</updated>
+      <workItem from="1680959530884" duration="813000" />
+      <workItem from="1680960532786" duration="500000" />
+      <workItem from="1680961037158" duration="374000" />
+      <workItem from="1680961433026" duration="1703000" />
+      <workItem from="1680963143748" duration="303000" />
+      <workItem from="1680963452310" duration="39000" />
+      <workItem from="1680963495188" duration="15000" />
+      <workItem from="1680963514762" duration="261000" />
+      <workItem from="1680963807142" duration="56000" />
+      <workItem from="1680963868564" duration="294000" />
+      <workItem from="1680964166334" duration="334000" />
+      <workItem from="1680964541861" duration="93000" />
+      <workItem from="1680964636337" duration="667000" />
+      <workItem from="1680965346909" duration="7000" />
+      <workItem from="1680965422364" duration="129000" />
+      <workItem from="1680965588990" duration="9000" />
+      <workItem from="1680965777191" duration="490000" />
+      <workItem from="1680971043352" duration="41000" />
+      <workItem from="1680971106169" duration="115000" />
+      <workItem from="1680971332008" duration="71000" />
+      <workItem from="1680971425309" duration="208000" />
+      <workItem from="1680971635604" duration="65000" />
+      <workItem from="1680971703164" duration="120000" />
+      <workItem from="1680971826041" duration="34000" />
+      <workItem from="1680971862173" duration="5000" />
+      <workItem from="1680971876968" duration="915000" />
+      <workItem from="1680972808724" duration="14570000" />
+      <workItem from="1680999750126" duration="862000" />
+      <workItem from="1681001229991" duration="245000" />
+      <workItem from="1681113521092" duration="19668000" />
+      <workItem from="1681155311444" duration="7449000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
