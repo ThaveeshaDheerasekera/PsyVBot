@@ -1,3 +1,4 @@
 datasets/
 nltk_data/
 models/final_models/
+.idea/

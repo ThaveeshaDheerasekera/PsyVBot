@@ -5,20 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3aed5f9e-09b8-4b83-bf1e-68956c1f5e1d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/models/lsa_random_forest_regression_model.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/lsa_transformed_logistic_regression_model.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/models/lsa_logistic_regression_model.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/lsa_transformed_lstm_model.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/models/lsa_lstm_model.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/lsa_transformed_svm_model.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/exportToHTML" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jupyter Notebook" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -46,7 +47,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;data-science&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;backend&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/thaveesha/Projects/PsyVBot&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -95,10 +96,27 @@
       <workItem from="1681001229991" duration="245000" />
       <workItem from="1681113521092" duration="19668000" />
       <workItem from="1681155311444" duration="7449000" />
+      <workItem from="1681293868705" duration="649000" />
+      <workItem from="1681294521456" duration="7637000" />
+      <workItem from="1681334885740" duration="1997000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/PsyVBot$chatbot.coverage" NAME="chatbot Coverage Results" MODIFIED="1681336011931" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
