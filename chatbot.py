@@ -1,60 +1,44 @@
 import os
+import random
 import re
 import string
 import numpy as np
 import tensorflow as tf
-from keras.models import load_model
 from keras.preprocessing.text import Tokenizer
 from keras.utils import pad_sequences
 
-# Load trained LSTM model
-lstm_model = load_model('models/final_models/lstm_e10_b32.h5')
+# Define keywords and responses
+keywords = {
+    "hello": ["Hello! How are you?", "Hi there! How can I help you?"],
+    "sad": ["I'm sorry to hear that. Can you tell me more about why you're feeling sad?", 
+            "It's okay to not be okay. I'm here to listen. What's been on your mind?"],
+    "anxious": ["I'm sorry to hear that you're feeling anxious. Would you like to talk about what's been causing your anxiety?",
+                "Anxiety can be tough to deal with. What's been on your mind lately?"],
+    "depressed": ["Depression is a tough thing to go through. Can you tell me more about why you're feeling depressed?",
+                  "It's okay to not be okay. I'm here to listen. What's been on your mind?"],
+    "happy": ["I'm glad to hear that you're feeling happy! Is there anything specific that's made you happy?",
+              "That's great to hear! What's been going well for you lately?"],
+    "quit": ["It was nice talking to you. Take care!", "Goodbye! Don't hesitate to reach out if you need to talk."]
+}
 
-# Load word to index and index to word mappings
-word2index = {"<PAD>": 0, "<UNK>": 1, "<EOS>": 2, "hello": 3, "how": 4, "are": 5, "you": 6, "i": 7, "am": 8, "good": 9, "bye": 10, "diagnose": 11, "quit": 12}
-index2word = {0: "<PAD>", 1: "<UNK>", 2: "<EOS>", 3: "hello", 4: "how", 5: "are", 6: "you", 7: "i", 8: "am", 9: "good", 10: "bye", 11: "diagnose", 12: "quit"}
+# Define a function to generate a response based on user input
+def generate_response(input_text):
+    # Remove punctuation and convert to lowercase
+    input_text = input_text.lower().strip('!,.?')
 
-# Define user inputs list
+    # Iterate through the keywords and check if they appear in the input text
+    for keyword in keywords:
+        if keyword in input_text:
+            return random.choice(keywords[keyword])
+    
+    # If no keyword was found, return a generic response
+    return "I'm sorry, I don't understand. Can you please rephrase your statement?"
+
+# Initialize user inputs list
 user_inputs = []
 
-# Start conversation with user
-print("-------------------------------------------------------------------------------------")
-print("---- PsyVBot ----")
-print("-------------------------------------------------------------------------------------")
-print("-- Important --")
-print("\t- Enter \"diagnose\" to get a diagnosis")
-print("\t- Enter \"exit\" to exit the chatbot. (This option will NOT provide a diagnosis)")
-print("-------------------------------------------------------------------------------------")
-print("PsyVBot: Hi! I'm here to listen. How are you feeling today?")
-
-# Define maximum length of input sequence
-max_len = 20
-
-# Initialize tokenizer
-tokenizer = Tokenizer(filters='', lower=False)
-
-def preprocess_text(user_input):
-    # Convert to lowercase
-    user_input = user_input.lower()
-    # Remove non-alphanumeric characters
-    user_input = re.sub(r'\W+', ' ', user_input)
-    # Remove extra spaces
-    user_input = re.sub(r'\s+', ' ', user_input)
-    # Truncate to maximum length
-    user_input = user_input[:max_len]
-    # Add start and end tokens
-    user_input = "<START> " + user_input + " <END>"
-    return user_input
-
-
-def generate_response(user_input, max_len=20):
-    input_seq = tokenizer.texts_to_sequences([user_input])[0]
-    input_seq = pad_sequences([input_seq], maxlen=max_len, padding='post')
-    predicted_seq = lstm_model.predict(input_seq)[0]
-    predicted_seq = np.argmax(predicted_seq, axis=-1)
-    output = tokenizer.sequences_to_texts([predicted_seq])[0]
-    return output
-
+# Start conversation
+print("PsyVBot: Hi! I'm here to listen...")
 
 while True:
     # Get user input
@@ -65,50 +49,37 @@ while True:
 
     # Check if user wants to end the conversation
     if user_input.lower() == "quit":
-        print("PsyVBot: It was nice talking to you. Take care!")
+        print("PsyVBot:", random.choice(keywords["quit"]))
         # Clear user inputs list
         user_inputs = []
         break
 
     # Check if user wants to diagnose depression
     if user_input.lower() == "diagnose":
+        print("PsyVBot: User inputs: ", user_inputs) # Print user inputs list
         # Check if user has provided enough input to diagnose depression
         if len(user_inputs) < 10:
             print("PsyVBot: Sorry, I need more information to diagnose your condition. Can you tell me more about how you've been feeling?")
             continue
-        # Preprocess user input
-        user_input_seq = []
-        for user_input in user_inputs:
-            user_input = preprocess_text(user_input)
-            for word in user_input.split():
-                if word in word2index:
-                    user_input_seq.append(word2index[word])
-                else:
-                    user_input_seq.append(word2index["<UNK>"])
-        user_input_seq = np.array(user_input_seq)
-        # Use LSTM model to predict depression diagnosis
-        predicted_output = lstm_model.predict(np.array([user_input_seq]))
-        if predicted_output > 0.5:
-            print("PsyVBot: Based on what you've told me, you might be showing signs of depression. It's important to take care of your mental health. Have you considered talking to a professional about how you're feeling?")
-        else:
-            print("PsyVBot: It sounds like you're doing well. Keep up the good work!")
         # Clear user inputs list
         user_inputs = []
         continue
 
     # Generate response
-    response = generate_response(user_input, max_len)
+    response = generate_response(user_input)
 
     # Print response
     print("PsyVBot:", response)
 
     # Ask follow-up questions based on the response
     if "how" in response.lower():
-        follow_up = input("PsyVBot: How do you feel about that?")
-        user_inputs.append(follow_up)
+        if "how do you feel" not in response.lower(): # Check if response already contains follow-up
+            follow_up = input("PsyVBot: How do you feel about that?")
+            user_inputs.append(follow_up)
     elif "why" in response.lower():
-        follow_up = input("PsyVBot: Why do you think that is?")
-        user_inputs.append(follow_up)
+        if "why do you think" not in response.lower(): # Check if response already contains follow-up
+            follow_up = input("PsyVBot: Why do you think that is?")
+            user_inputs.append(follow_up)
     elif "tell me more" in response.lower():
         follow_up = input("PsyVBot: Can you elaborate on that?")
         user_inputs.append(follow_up)
