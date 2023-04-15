@@ -2,3 +2,4 @@ datasets/
 nltk_data/
 models/final_models/
 .idea/
+models/.ipynb_checkpoints
