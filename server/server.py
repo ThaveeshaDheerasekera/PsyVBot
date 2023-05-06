@@ -24,4 +24,4 @@ def get_user_prediction():
     # result = "PsyVBot: The average prediction is: ", prediction
 
     # Return the prediction to the frontend
-    return jsonify({'prediction': prediction})
+    return prediction

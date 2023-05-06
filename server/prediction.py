@@ -1,5 +1,7 @@
 import json
+from flask import jsonify
 import os
+import math
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 import logging
@@ -29,8 +31,11 @@ def predict_depression(user_inputs):
 
     prediction_avg = sum(predictions)/len(user_inputs)
 
-        # Convert the ndarray to a list
+    # Convert the ndarray to a list
     prediction_list = prediction_avg.tolist()
 
+    # data = {"prediction": math.trunc(prediction_list[0])}
+    data = {"prediction": float(f'{prediction_list[0]:.5f}')}
+
     # Return the prediction as a JSON-serializable string
-    return json.dumps({'prediction': prediction_list})
+    return jsonify(data)
