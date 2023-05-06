@@ -47,8 +47,23 @@ class UserInputs extends ChangeNotifier {
     final response =
         await http.get(Uri.parse('${UrlLocation.serverUrl}/getPrediction'));
     if (response.statusCode == 200) {
-      final prediction = jsonDecode(response.body)['prediction'];
-      return prediction;
+      final predictionScore = jsonDecode(response.body)['prediction'];
+      final predictionScoreString =
+          jsonDecode(response.body)['prediction'].toString();
+
+      String predictionResponse = "";
+
+      if (predictionScore > 0.65) {
+        predictionResponse =
+            'Based on your responses, you do not have depression.\nDepression Score: $predictionScoreString';
+      } else if (predictionScore < 0.35) {
+        predictionResponse =
+            'Based on your responses, you have suicidal level depression.\nDepression Score: $predictionScoreString';
+      } else {
+        predictionResponse =
+            'Based on your responses, you have depression.\nDepression Score: $predictionScoreString';
+      }
+      return predictionResponse;
     } else {
       throw Exception('Failed to get the prediction');
     }

@@ -20,6 +20,7 @@ class BackButtonWidget extends StatelessWidget {
       },
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          backgroundColor: Color(0xFFD586D7),
           elevation: 0.0,
         ),
         onPressed: () {},

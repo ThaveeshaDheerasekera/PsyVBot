@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:psyvbot/configs/responses.dart';
 import '../providers/user_inputs.dart';
-import '../widgets/back_button_widget.dart';
-import '../widgets/chat_area_widget.dart';
-import '../widgets/stop_speak_button.dart';
 import '../widgets/text_field_widget.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
@@ -32,7 +29,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    chatMessages.add('PsyVBot: Hi! I\'m here to listen...');
+    chatMessages.add('Hi! I\'m here to listen...');
     flutterTts = FlutterTts();
   }
 
@@ -51,6 +48,7 @@ class _ChatScreenState extends State<ChatScreen> {
       child: Consumer<UserInputs>(
         builder: (context, userInputs, child) => Scaffold(
           appBar: AppBar(
+            backgroundColor: Color(0xFFD586D7),
             title: const Text(
               'PsyVBot',
               style: TextStyle(
@@ -58,128 +56,201 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
             centerTitle: true,
-            leading: const BackButtonWidget(),
+            leading: ClearConversation(userInputs),
             actions: [
-              StopSpeakButtonWidget(flutterTts: flutterTts),
+              GetDiagnosis(userInputs),
             ],
           ),
-          body: Column(
-            children: [
-              // List of chatbot messages
-              ChatAreaWidget(
-                chatMessages: chatMessages,
-                scrollController: scrollController,
-              ),
-              // TextField to enter user inputs
-              Container(
-                // color: Colors.amber,
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: <Widget>[
-                    TextFieldWidget(
-                      controller: _controller,
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.send),
-                      onPressed: () async {
-                        // Save the typed message as a string variable called userInput
-                        String userInput = _controller.text;
-                        // Clear the text field
-                        _controller.clear();
+          body: Container(
+            margin: EdgeInsets.only(top: 10),
+            color: Color(0xFFF6E9F7).withOpacity(0.5),
+            child: Column(
+              children: <Widget>[
+                // List of chatbot messages
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: chatMessages.length,
+                    controller: scrollController,
+                    itemBuilder: (context, index) {
+                      bool isUserInput = userInputs.getUserInputs
+                          .contains(chatMessages[index]);
+                      if (!isUserInput) {
+                        return ListTile(
+                          title: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color(0xFFDC9FDF).withOpacity(0.85),
+                            ),
+                            margin: EdgeInsets.only(right: 75),
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              chatMessages[index],
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                          ),
+                        );
+                      } else {
+                        return ListTile(
+                          title: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color(0xFFEED2EF).withOpacity(0.85),
+                            ),
+                            margin: EdgeInsets.only(left: 75),
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              chatMessages[index],
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ),
+                // TextField to enter user inputs
+                Container(
+                  // color: Colors.amber,
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: <Widget>[
+                      TextFieldWidget(
+                        controller: _controller,
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.send),
+                        onPressed: () async {
+                          // Save the typed message as a string variable called userInput
+                          String userInput = _controller.text;
+                          // Clear the text field
+                          _controller.clear();
 
-                        // Check if user wants to end the conversation
-                        if (userInput.toLowerCase() == 'clear') {
-                          // Clear user inputs list
-                          userInputs.clearUserInputs();
-                          chatMessages = [];
-                          return;
-                        }
+                          // Check if user wants to end the conversation
+                          if (userInput.toLowerCase() == 'clear') {
+                            // Clear user inputs list
+                            userInputs.clearUserInputs();
+                            chatMessages = [];
+                            return;
+                          }
 
-                        // Check if user wants help
-                        if (userInput.toLowerCase() == 'help') {
-                          String response =
-                              '\n-- Instructions --\n- Type \'help\' to get instructions\n- Type \'clear\' to clear the conversation and chat history\n- Type \'diagnose\' for depression diagnosis\n-- The output is a number ranging between 0 and 1\n-- If value is arround 0.5,\n---  There is a high probability that you may have depression\n-- If value is closer to 0,\n--- You may be diagnosed with depression, which can even lead to suicidal thoughts \n-- If the value is closer to 1,\n--- You are NOT diagnosed with depression.';
-                          setState(() {
-                            chatMessages.add('PsyVBot: $response');
-                            flutterTts.speak(response);
-                          });
-                          return;
-                        }
-
-                        // Check if user wants to diagnose depression
-                        if (userInput.toLowerCase() == 'diagnose') {
-                          // Check if user has provided enough input to diagnose depression
-                          if (userInputs.getUserInputs.length < 3) {
-                            String response =
-                                'Sorry, I need more information to diagnose your condition. Can you tell me more about how you\'ve been feeling?';
+                          // Check if user input is empty
+                          if (userInput.trim() == '') {
+                            String response = 'Please say something.';
                             setState(() {
-                              chatMessages.add('PsyVBot: $response');
+                              chatMessages.add(response);
                               flutterTts.speak(response);
                             });
-                          } else {
-                            // Send the user inputs to the server
-                            try {
-                              await userInputs
-                                  .sendUserInputs(userInputs.getUserInputs);
-                              // Get the prediction from the server
-                              String prediction =
-                                  await userInputs.getPrediction();
-                              // Generate the response based on the prediction
-                              String predictionResponse =
-                                  'Based on your responses, you may be experiencing $prediction.';
 
-                              setState(() {
-                                // Add the response to the chatMessages list
-                                chatMessages
-                                    .add('PsyVBot: $predictionResponse');
-                                flutterTts.speak(predictionResponse);
-                              });
-                            } catch (e) {
-                              setState(() {
-                                chatMessages.add('Error: $e');
-                              });
-                            }
+                            return;
                           }
-                          return;
-                        }
 
-                        // Check if user input is empty
-                        if (userInput.trim() == '') {
-                          String response = 'Please say something.';
+                          // Add user input to list
+                          userInputs.addUserInput(userInput);
+                          chatMessages.add(userInput);
+
+                          // Generate response
+                          String response = generateResponse(userInput);
+
+                          // Add response to list
                           setState(() {
-                            chatMessages.add('PsyVBot: $response');
+                            chatMessages.add(response);
                             flutterTts.speak(response);
                           });
-
-                          return;
-                        }
-
-                        // Add user input to list
-                        userInputs.addUserInput(userInput);
-                        chatMessages.add('You: $userInput');
-
-                        // Generate response
-                        String response = generateResponse(userInput);
-
-                        // Add response to list
-                        setState(() {
-                          chatMessages.add('PsyVBot: $response');
-                          flutterTts.speak(response);
-                        });
-                      },
-                    ),
-                  ],
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
     );
   }
+
+  // ------------------- functions -------------------
+
+  ElevatedButton ClearConversation(UserInputs userInputs) {
+    return ElevatedButton(
+      onPressed: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Clear Chat'),
+              content: Text('Are you sure you want to clear the chat?'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(false),
+                  child: Text('No'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    userInputs.clearUserInputs();
+                    setState(() {
+                      chatMessages = [];
+                      chatMessages.add('Hi! I\'m here to listen...');
+                    });
+                    Navigator.of(context).pop(true);
+                  },
+                  child: Text('Yes'),
+                ),
+              ],
+            );
+          },
+        );
+      },
+      child: Icon(Icons.delete_outline),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color(0xFFD586D7),
+        elevation: 0.0,
+      ),
+    );
+  }
+
+  ElevatedButton GetDiagnosis(UserInputs userInputs) {
+    return ElevatedButton(
+      onPressed: () async {
+        // check if the length of the list of user inputs is greater than 5
+        if (userInputs.getUserInputs.length < 5) {
+          String response =
+              'Sorry, I need more information to diagnose your condition. Can you tell me more about how you\'ve been feeling?';
+          setState(() {
+            chatMessages.add(response);
+            flutterTts.speak(response);
+          });
+        } else {
+          // Send the user inputs to the server
+          try {
+            print(userInputs.getUserInputs);
+            await userInputs.sendUserInputs(userInputs.getUserInputs);
+
+            // Get the prediction from the server
+            String prediction = await userInputs.getPrediction();
+
+            setState(() {
+              // Add the response to the chatMessages list
+              chatMessages.add(prediction);
+              flutterTts.speak(prediction);
+            });
+          } catch (e) {
+            setState(() {
+              chatMessages.add('Error: $e');
+            });
+          }
+        }
+      },
+      child: Icon(Icons.play_circle_outlined),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color(0xFFD586D7),
+        elevation: 0.0,
+      ),
+    );
+  }
 }
 
-// Define a function to generate a response based on user input
+// This is the function to generate a response for the user input
 String generateResponse(String inputText) {
   String lastResponse = '';
 

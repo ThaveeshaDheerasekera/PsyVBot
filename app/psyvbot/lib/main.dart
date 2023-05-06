@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'providers/user_inputs.dart';
 import 'screens/home_screen.dart';
 import 'screens/spash_screen.dart';
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'PsyVBot',
         theme: ThemeData(
-          fontFamily: GoogleFonts.oxygenMono().fontFamily,
+          fontFamily: 'OxygenMono',
           primarySwatch: const MaterialColor(
             0xFFC8A2C8,
             {
@@ -41,7 +40,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         home: FutureBuilder(
-          future: Future.delayed(Duration(seconds: 5)), // Wait for 3 seconds
+          future: Future.delayed(Duration(seconds: 3)), // Wait for 3 seconds
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               return HomeScreen(); // Navigate to home screen
