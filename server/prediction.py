@@ -13,7 +13,7 @@ from keras.utils import pad_sequences
 from keras.models import load_model
 
 # Load the saved model from the .h5 file
-model = load_model('/Users/thaveesha/Projects/PsyVBot/models/final_models/lstm_e5_b32_es.h5')
+model = load_model('/home/ubuntu/PsyVBot/models/final_models/lstm_e5_b32_es.h5')
 
 def predict_depression(user_inputs):
     # Load the tokenizer that you used during training
