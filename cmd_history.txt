@@ -1,0 +1,213 @@
+    1  l
+    2  ll
+    3  clear
+    4  sudo apt-get update
+    5  sudo apt-get install apache2 libapache2-mod-wsgi-py3
+    6  sudo apt-get install python3-pip python3-dev nginx
+    7  clear
+    8  ll
+    9  git status
+   10  git clone -b backend https://github.com/ThaveeshaDheerasekera/PsyVBot.git
+   11  cd PsyVBot/
+   12  ls
+   13  cd ../psyvbot/
+   14  ls
+   15  cp requirements.txt ../PsyVBot/
+   16  cd ..
+   17  cd PsyVBot/
+   18  ls
+   19  git status
+   20  git add .
+   21  git commit -m "requirements added"
+   22  git push
+   23  sudo -H pip3 install virtualenv
+   24  virtualenv venv
+   25  ls
+   26  ll
+   27  source venv/bin/activate
+   28  pip install flask gunicorn
+   29  pip install -t requirements.txt 
+   30  pip install -r requirements.txt 
+   31  cd ~
+   32  sudo vim /etc/systemd/system/psyvbot.service
+   33  sudo systemctl start psyvbot.service
+   34  sudo systemctl enable psyvbot.service
+   35  sudo systemctl status psyvbot.service
+   36  sudo nano /etc/nginx/sites-available/PsyVBot
+   37  sudo vim /etc/nginx/sites-available/PsyVBot
+   38  sudo vim /etc/nginx/sites-available/PsyVBotsudo ln -s /etc/nginx/sites-available/PsyVBot /etc/nginx/sites-enabled
+   39* sudo nginx -
+   40  sudo systemctl restart nginx
+   41  sudo systemctl status psyvbot.services
+   42  sudo systemctl status psyvbot
+   43  clear
+   44  deactivate
+   45  ls
+   46  cd /etc/nginx/sites-available
+   47  ls
+   48  rm -rm PsyVBot PsyVBotsudo 
+   49  rm -rf PsyVBot PsyVBotsudo 
+   50  sudo rm -rf PsyVBot PsyVBotsudo 
+   51  ls
+   52  ll
+   53  cd
+   54  clear
+   55  sudo apt update
+   56  sudo apt install python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools
+   57  sudo apt install python3-venv
+   58  cd PsyVBot/
+   59  ls
+   60  python3 -m venv venv/
+   61  ls
+   62  source venv/bin/activate
+   63  pip list
+   64  pip install gunicorn flask
+   65  sudo ufw allow 5000
+   66  python server/app.py 
+   67  pip install -r requirements.txt 
+   68  pip install tensorflow
+   69  python server/app.py 
+   70  pip install tensorflow
+   71  sudo swapon --show
+   72  sudo fallocate -l 4G /swapfile
+   73  cd ..
+   74  ls
+   75  cd psyvbot/
+   76  ls
+   77  deactivate
+   78  cd ..
+   79  ls -l
+   80  ll
+   81  cd .venvs/
+   82  ls
+   83  source psyvbot/bin/activate
+   84  pip list
+   85  cd  ..
+   86  cd PsyVBot/
+   87  clear
+   88  python server/app.py 
+   89  ls
+   90  cd server/
+   91  ls
+   92  python app.py 
+   93  cd
+   94  ls
+   95  rm -rf psyvbot/
+   96  ls
+   97  ll
+   98  mkdir temp
+   99  ll
+  100  export TMPDIR=~/temp
+  101  cd PsyVBot/
+  102  python server/app.py 
+  103  cd models/final_models/
+  104  ls
+  105  cd ../../server/
+  106  ls
+  107  vim prediction.py 
+  108  python server/app.py 
+  109  cd ..
+  110  python server/app.py 
+  111  vim server/prediction.py 
+  112  python server/app.py 
+  113  cd models/final_models/
+  114  pwd
+  115  cd ..
+  116  vim server/prediction.py 
+  117  python server/app.py 
+  118  tree models/
+  119  cd ..
+  120  ls
+  121  rm -rf psyvbot 
+  122  ls
+  123  rm -rf psyvbot 
+  124  ls
+  125  cd PsyVBot/
+  126  ll
+  127  cd models/final_models/
+  128  ls
+  129  mv lstm_e5_b32_es.h5 lstm_e5_b32_es_git.h5 
+  130  ll
+  131  cd ../../
+  132  ls
+  133  mv lstm_e5_b32_es.h5 models/final_models/
+  134  l
+  135  python server/app.py 
+  136  sudo lsof -i :8000
+  137  sudo kill 4244
+  138  python server/app.py 
+  139  vim server/app.py 
+  140  ifconfig
+  141  python server/app.py 
+  142  cd server/
+  143  l
+  144  vim wsgi.py
+  145  gunicorn --bind 0.0.0.0:5000 wsgi:app
+  146  vim wsgi.py
+  147  vim app.py 
+  148  vim wsgi.py
+  149  gunicorn --bind 0.0.0.0:5000 wsgi:app
+  150  deactivate
+  151  cd ~
+  152  cd /etc/systemd/system/
+  153  ls
+  154* vim syvbot.service 
+  155  cd
+  156  ls
+  157  cd .venvs/
+  158  ls
+  159  cd psyvbot
+  160  ls
+  161  cd bin/
+  162  ls
+  163  cd ..
+  164  cd..
+  165  cd ..
+  166  source psyvbot/bin/activate
+  167  ls
+  168  pip freeze > requirements.txt
+  169  cat requirements.txt 
+  170  cd ../
+  171  cd PsyVBot/
+  172  ls
+  173  rm requirements.txt 
+  174  cd ..
+  175  cp .venvs/requirements.txt PsyVBot/
+  176  deactivate 
+  177  cd PsyVBot/
+  178  ls
+  179  cat requirements.txt
+  180  ll
+  181  source venv/bin/activate
+  182  pip list
+  183  pip install -r requirements.txt 
+  184  cd ..
+  185  cd .venvs/
+  186  cd ..
+  187  cd PsyVBot/
+  188  git status
+  189  cd server/
+  190  cd ../models/final_models/
+  191  ls
+  192  rm lstm_e5_b32_es_git.h5 
+  193  ls
+  194  cd ../../
+  195  cd ..
+  196  cd
+  197  cd .venvs/
+  198  ll
+  199  rm -rf psyvbot-env/
+  200  rm -rf psyvbot
+  201  cd ../
+  202  cd PsyVBot/
+  203  deactivate
+  204  clear
+  205  source venv/bin/activate
+  206  pip install -r requirements.txt 
+  207  pip list
+  208  pip install -r requirements.txt 
+  209  git status
+  210  git add .
+  211  git commit -m "server requirements added"
+  212  git push
+  213  history > cmd_history.txt
