@@ -1,7 +1,5 @@
-datasets/
-nltk_data/
-models/final_models/
-
+.DS_Store
 .env
 .idea/
 models/.ipynb_checkpoints
+datasets/.DS_Store
