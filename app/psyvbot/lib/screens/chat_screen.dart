@@ -125,14 +125,6 @@ class _ChatScreenState extends State<ChatScreen> {
                           // Clear the text field
                           _controller.clear();
 
-                          // Check if user wants to end the conversation
-                          if (userInput.toLowerCase() == 'clear') {
-                            // Clear user inputs list
-                            userInputs.clearUserInputs();
-                            chatMessages = [];
-                            return;
-                          }
-
                           // Check if user input is empty
                           if (userInput.trim() == '') {
                             String response = 'Please say something.';
@@ -178,7 +170,12 @@ class _ChatScreenState extends State<ChatScreen> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Clear Chat'),
+              title: Text(
+                'Clear Chat',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               content: Text('Are you sure you want to clear the chat?'),
               actions: [
                 TextButton(
